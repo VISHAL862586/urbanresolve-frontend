@@ -1,0 +1,164 @@
+.admin-container {
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.admin-title {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.admin-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.admin-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+  color: white;
+}
+
+.status-dropdown {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background: #334155;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: red;
+  color: white;
+  cursor: pointer;
+}
+
+/* =========================
+   TOP CONTROL SECTION
+========================= */
+
+.top-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+    margin:30px 0;
+    flex-wrap:wrap;
+}
+
+/* =========================
+   SEARCH BOX
+========================= */
+
+.search-box{
+    padding:12px 18px;
+    width:260px;
+    border:none;
+    border-radius:10px;
+    background:#344563;
+    color:white;
+    font-size:16px;
+    outline:none;
+    transition:0.3s;
+}
+
+.search-box::placeholder{
+    color:#d1d1d1;
+}
+
+.search-box:focus{
+    box-shadow:0 0 10px rgba(0,123,255,0.5);
+}
+
+/* =========================
+   DROPDOWN STYLE
+========================= */
+
+.filter-dropdown{
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:#344563;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    min-width:160px;
+}
+
+.filter-dropdown:hover{
+    background:#42567a;
+}
+
+/* Dropdown options */
+.filter-dropdown option{
+    background:#1f2a44;
+    color:white;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .top-controls{
+        flex-direction:column;
+        align-items:stretch;
+        width:90%;
+        margin:auto;
+    }
+
+    .search-box,
+    .filter-dropdown{
+        width:100%;
+    }
+}
+
+.complaint-image{
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: 0.3s;
+}
+
+.complaint-image:hover{
+    transform: scale(1.05);
+}
+
+.image-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.full-image{
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px black;
+}
