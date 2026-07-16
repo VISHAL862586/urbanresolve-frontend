@@ -42,6 +42,7 @@ function Login() {
           headers: {
             "Content-Type": "application/json"
           },
+          credentials: "include",
           body: JSON.stringify({ email })
         }
       );
@@ -136,17 +137,27 @@ function Login() {
       if (!res.ok) {
         throw new Error("Invalid OTP");
       }
-
       const user = await res.json();
+
+      console.log("Logged in user:", user);
+
+      // Check whether session exists
+      const me = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/auth/me`,
+          {
+              credentials: "include"
+          }
+      );
+
+      const currentUser = await me.json();
+
+      console.log("Current Session:", currentUser);
 
       setShowPopup(true);
 
       setTimeout(() => {
-
-        setShowPopup(false);
-
-        navigate("/");
-
+          setShowPopup(false);
+          navigate("/");
       }, 2000);
 
     } catch (err) {
