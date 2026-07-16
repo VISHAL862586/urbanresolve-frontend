@@ -142,16 +142,18 @@ function Login() {
       console.log("Logged in user:", user);
 
       // Check whether session exists
-      const me = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/auth/me`,
-          {
-              credentials: "include"
-          }
-      );
+    const me = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/me`,
+        {
+            credentials: "include"
+        }
+    );
 
-      const currentUser = await me.json();
+    console.log("ME STATUS:", me.status);
 
-      console.log("Current Session:", currentUser);
+    const text = await me.text();
+
+    console.log("ME RESPONSE:", text);
 
       setShowPopup(true);
 
