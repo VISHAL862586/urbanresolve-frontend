@@ -36,7 +36,7 @@ function Login() {
     try {
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/send-otp`,
+        `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/send-otp`,
         {
           method: "POST",
           headers: {
@@ -120,7 +120,7 @@ function Login() {
     try {
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/verify-otp`,
+        `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/verify-otp`,
         {
           method: "POST",
           headers: {
@@ -143,7 +143,7 @@ function Login() {
 
       // Check whether session exists
     const me = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/me`,
+        `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`,
         {
             credentials: "include"
         }

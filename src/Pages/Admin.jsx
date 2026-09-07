@@ -11,7 +11,7 @@ function Admin() {
 
   // Fetch complaints
   function loadComplaints() {
-    fetch(`${import.meta.env.VITE_API_URL}/api/complaints`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -25,7 +25,7 @@ function Admin() {
 
   //  Update status
   function updateStatus(id, status) {
-    fetch(`${import.meta.env.VITE_API_URL}/api/complaints/${id}?status=${status}`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints/${id}?status=${status}`, {
       method: "PUT",
       credentials: "include"
     })
@@ -35,7 +35,7 @@ function Admin() {
 
   // ✅ Delete complaint
   function deleteComplaint(id) {
-    fetch(`${import.meta.env.VITE_API_URL}/api/complaints/${id}`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints/${id}`, {
       method: "DELETE",
       credentials: "include"
     })

@@ -6,7 +6,7 @@ function AdminRoute({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
       credentials: "include"
     })
       .then(res => res.json())

@@ -9,7 +9,7 @@ function Profile() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -29,7 +29,7 @@ function Profile() {
   async function updateProfile() {
 
     const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/auth/update-profile`,
+      `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/update-profile`,
       {
         method: "PUT",
         headers: {

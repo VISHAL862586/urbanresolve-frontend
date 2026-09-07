@@ -7,7 +7,7 @@ function NewsTicker() {
 
   useEffect(() => {
 
-    fetch(`${import.meta.env.VITE_API_URL}/api/news`)
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news`)
       .then(res => res.json())
       .then(data => {
 

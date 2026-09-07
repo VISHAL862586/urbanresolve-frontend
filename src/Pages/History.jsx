@@ -9,7 +9,7 @@ function History() {
 
   const [complaints, setComplaints] = useState([]);
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/complaints`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`, {
       credentials: "include"
     })
       .then((res) => {

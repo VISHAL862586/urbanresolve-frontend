@@ -41,7 +41,7 @@ async function handleSubmit(e) {
     formData.append("image", image);
 
     const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/complaints`,
+      `${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`,
       {
         method: "POST",
         credentials: "include",

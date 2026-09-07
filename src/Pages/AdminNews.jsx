@@ -18,7 +18,7 @@ function AdminNews() {
 
   async function addNews() {
 
-    await fetch(`${import.meta.env.VITE_API_URL}/api/news`, {
+    await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +33,7 @@ function AdminNews() {
 
   async function deleteNews(id) {
 
-    await fetch(`${import.meta.env.VITE_API_URL}/api/news/${id}`, {
+    await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news/${id}`, {
       method: "DELETE",
       credentials: "include"
     });

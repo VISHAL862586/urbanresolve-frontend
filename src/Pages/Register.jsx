@@ -37,7 +37,7 @@ function Register() {
     try {
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/auth/send-register-otp`,
+        `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/send-register-otp`,
         {
           method: "POST",
           headers: {

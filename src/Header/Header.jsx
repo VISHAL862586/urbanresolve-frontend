@@ -8,7 +8,7 @@ function Header() {
 
   // 🔹 check login status
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -20,7 +20,7 @@ function Header() {
   const handleLogout = async () => {
   console.log("Calling correct logout...");
 
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
+  const res = await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/logout`, {
     method: "POST",
     credentials: "include"
   });
