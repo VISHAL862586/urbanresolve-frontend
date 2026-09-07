@@ -1,0 +1,107 @@
+/* Container */
+.history-container {
+  min-height: 100vh;
+  padding: 40px;
+  
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: white;
+}
+
+/* Title */
+.history-title {
+  margin-top:50px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Card layout */
+.history-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.history-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+
+  transition: 0.3s;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Status */
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+/* Status colors */
+.status.Pending {
+  background: #facc15;
+  color: black;
+}
+
+.status.InProgress {
+  background: #3b82f6;
+}
+
+.status.Resolved {
+  background: #22c55e;
+}
+
+/* Filter buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filter-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+
+  background: #334155;
+  color: white;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.filter-buttons button:hover {
+  background: #3b82f6;
+}
+
+.sort-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.sort-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+
+  background: #334155;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sort-buttons button:hover {
+  background: #3b82f6;
+}

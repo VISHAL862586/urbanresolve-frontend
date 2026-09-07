@@ -1,0 +1,20 @@
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+:root {
+  --primary: #3B82F6;
+  --primary-dark: #1E40AF;
+  --bg: #0F172A;
+  --text: #E2E8F0;
+  --border: #334155;
+
+  --success: #16A34A;
+  --warning: #F59E0B;
+  --danger: #DC2626;
+}

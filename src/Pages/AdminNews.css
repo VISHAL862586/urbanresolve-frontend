@@ -1,0 +1,159 @@
+/* =========================
+   PAGE
+========================= */
+
+.news-page{
+    min-height:100vh;
+    padding:40px;
+    background:linear-gradient(to right, #081229, #14213d);
+    color:white;
+    font-family:Arial, sans-serif;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.news-title{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:40px;
+    font-weight:bold;
+}
+
+/* =========================
+   TOP INPUT SECTION
+========================= */
+
+.news-form{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+}
+
+.news-input{
+    width:400px;
+    padding:14px 18px;
+    border:none;
+    border-radius:12px;
+    background:#24344d;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.news-input::placeholder{
+    color:#cfcfcf;
+}
+
+.news-input:focus{
+    box-shadow:0 0 10px rgba(0,123,255,0.5);
+}
+
+/* =========================
+   ADD BUTTON
+========================= */
+
+.add-news-btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.add-news-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   NEWS LIST
+========================= */
+
+.news-list{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:25px;
+}
+
+/* =========================
+   NEWS CARD
+========================= */
+
+.news-card{
+    background:rgba(255,255,255,0.08);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    transition:0.3s;
+}
+
+.news-card:hover{
+    transform:translateY(-5px);
+}
+
+/* =========================
+   NEWS TEXT
+========================= */
+
+.news-text{
+    font-size:20px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
+.delete-news-btn{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+    font-weight:bold;
+    width:100%;
+}
+
+.delete-news-btn:hover{
+    background:#dc2626;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .news-page{
+        padding:20px;
+    }
+
+    .news-title{
+        font-size:32px;
+    }
+
+    .news-input{
+        width:100%;
+    }
+
+    .news-form{
+        flex-direction:column;
+    }
+
+    .add-news-btn{
+        width:100%;
+    }
+}
