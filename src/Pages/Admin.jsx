@@ -139,12 +139,12 @@ function Admin() {
             <p><strong>Description:</strong> {c.description}</p>
 
            <img
-              src={`http://localhost:8080/api/complaints/image/${c.id}`}
+              src={`https://urbanresolve-render-backend.onrender.com/api/complaints/image/${c.id}`}
               alt="Complaint"
               className="complaint-image"
               onClick={() =>
                 setSelectedImage(
-                  `http://localhost:8080/api/complaints/image/${c.id}`
+                  `https://urbanresolve-render-backend.onrender.com/api/complaints/image/${c.id}`
                 )
               }
             />

@@ -7,7 +7,7 @@ function AdminNews() {
   const [news, setNews] = useState([]);
 
   function loadNews() {
-    fetch("http://localhost:8080/api/news")
+    fetch("https://urbanresolve-render-backend.onrender.com/api/news")
       .then(res => res.json())
       .then(data => setNews(data));
   }

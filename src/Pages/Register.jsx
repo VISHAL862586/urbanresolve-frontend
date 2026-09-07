@@ -74,7 +74,7 @@ function Register() {
     try {
 
       const res = await fetch(
-        "http://localhost:8080/api/auth/verify-register-otp",
+        "https://urbanresolve-render-backend.onrender.com/api/auth/verify-register-otp",
         {
           method: "POST",
           headers: {
