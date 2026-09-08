@@ -2,26 +2,20 @@ import "./Account.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 function Register() {
 
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [showOtpBox, setShowOtpBox] = useState(false);
 
-  // ✅ Store form data
   const [user, setUser] = useState({
     name: "",
     email: "",
+    password: "",
     phone: "",
     address: "",
     role: ""
   });
 
-  const [image, setImage] = useState(null);
-
-  // ✅ Handle input change
   function handleChange(e) {
     setUser({
       ...user,
@@ -29,7 +23,6 @@ function Register() {
     });
   }
 
-  // ✅ Handle form submit (API call added)
   async function handleSubmit(e) {
 
     e.preventDefault();
@@ -37,7 +30,7 @@ function Register() {
     try {
 
       const res = await fetch(
-        `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/send-register-otp`,
+        "https://urbanresolve-render-backend.onrender.com/api/auth/register",
         {
           method: "POST",
           headers: {
@@ -50,44 +43,7 @@ function Register() {
 
       const data = await res.text();
 
-      if (data === "OTP sent successfully") {
-
-        alert("OTP sent to email");
-
-        setShowOtpBox(true);
-
-      } else {
-
-        alert(data);
-      }
-
-    } catch (err) {
-
-      console.error(err);
-
-      alert("Server error");
-    }
-  }
-
-  async function verifyOtp() {
-
-    try {
-
-      const res = await fetch(
-        "https://urbanresolve-render-backend.onrender.com/api/auth/verify-register-otp",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          credentials: "include",
-          body: JSON.stringify({ otp })
-        }
-      );
-
-      const data = await res.text();
-
-      if (data === "Registration successful") {
+      if (data === "User registered successfully") {
 
         setShowPopup(true);
 
@@ -113,10 +69,10 @@ function Register() {
   }
 
   return (
-    <>
-    
     <div className="user-container">
+
       <form className="user-form" onSubmit={handleSubmit}>
+
         <h2 className="user-title">Register</h2>
 
         <input
@@ -137,9 +93,19 @@ function Register() {
           onChange={handleChange}
         />
 
+        <input
+          className="user-input"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          onChange={handleChange}
+        />
+
         <select
           className="user-input"
           name="role"
+          value={user.role}
           onChange={handleChange}
           required
         >
@@ -165,36 +131,21 @@ function Register() {
           required
           onChange={handleChange}
         ></textarea>
-        {
-          showOtpBox && (
 
-            <>
-              <input
-                className="user-input"
-                type="text"
-                placeholder="Enter OTP"
-                onChange={(e) => setOtp(e.target.value)}
-              />
-
-              <button
-                type="button"
-                className="user-btn"
-                onClick={verifyOtp}
-              >
-                Verify OTP
-              </button>
-            </>
-          )
-        }
-
-        <button className="user-btn">Register</button>
+        <button className="user-btn" type="submit">
+          Register
+        </button>
 
         <p className="user-text">
           Already have an account?{" "}
-          <span className="user-link" onClick={() => navigate("/login")}>
+          <span
+            className="user-link"
+            onClick={() => navigate("/login")}
+          >
             Login
           </span>
         </p>
+
       </form>
 
       {showPopup && (
@@ -202,8 +153,8 @@ function Register() {
           Registered Successfully ✅
         </div>
       )}
+
     </div>
-    </>
   );
 }
 
