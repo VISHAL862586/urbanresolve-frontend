@@ -1,84 +1,149 @@
+
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Header.css";
 
 function Header() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
 
-  // 🔹 check login status
+  const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
       credentials: "include"
     })
-      .then(res => res.json())
-      .then(data => setUser(data))
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Unable to fetch user");
+        }
+        return res.json();
+      })
+      .then((data) => setUser(data))
       .catch(() => setUser(null));
   }, []);
 
-  // 🔹 logout function
+  const navigateTo = (path) => {
+    setMenuOpen(false);
+    navigate(path);
+  };
+
   const handleLogout = async () => {
-  console.log("Calling correct logout...");
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/auth/logout`,
+        {
+          method: "POST",
+          credentials: "include"
+        }
+      );
 
-  const res = await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/logout`, {
-    method: "POST",
-    credentials: "include"
-  });
+      if (!res.ok) {
+        throw new Error("Logout failed");
+      }
 
-  console.log("Response status:", res.status);
-
-  setUser(null);
-  navigate("/");
-};
+      setUser(null);
+      setMenuOpen(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   return (
-    <div className="header">
-      <h2>UrbanResolve</h2>
+    <header className="header">
+      <h2
+        className="header-brand"
+        onClick={() => navigateTo("/")}
+      >
+        UrbanResolve
+      </h2>
 
-      <nav>
+      <button
+        type="button"
+        className="menu-toggle"
+        onClick={() => setMenuOpen((previous) => !previous)}
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        aria-controls="main-navigation"
+      >
+        {menuOpen ? "✕" : "☰"}
+      </button>
+
+      <nav
+        id="main-navigation"
+        className={`header-nav ${menuOpen ? "menu-open" : ""}`}
+      >
         <ul>
-          <li onClick={() => navigate("/")}>Home</li>
-          <li onClick={() => navigate("/complaint")}>Complaint</li>
-          <li onClick={() => navigate("/history")}>History</li>
-          <li onClick={() => navigate("/contact")}>Contact</li>
+          <li>
+            <button type="button" onClick={() => navigateTo("/")}>
+              Home
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigateTo("/complaint")}>
+              Complaint
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigateTo("/history")}>
+              History
+            </button>
+          </li>
+          <li>
+            <button type="button" onClick={() => navigateTo("/contact")}>
+              Contact
+            </button>
+          </li>
         </ul>
       </nav>
 
-      <div>
-        {/* 🔹 NOT LOGGED IN */}
+      <div className={`header-actions ${menuOpen ? "actions-open" : ""}`}>
         {!user && (
           <>
-            <button onClick={() => navigate("/login")}>Login</button>
-            <button onClick={() => navigate("/register")}>Register</button>
+            <button type="button" onClick={() => navigateTo("/login")}>
+              Login
+            </button>
+            <button type="button" onClick={() => navigateTo("/register")}>
+              Register
+            </button>
           </>
         )}
 
-        {/* 🔹 LOGGED IN */}
         {user && (
           <>
-            <button onClick={() => navigate("/profile")}>
+            <button
+              type="button"
+              onClick={() => navigateTo("/profile")}
+            >
               👤 {user.name}
             </button>
 
-          {user.role === "ADMIN" && (
+            {user.role === "ADMIN" && (
               <>
-                <button onClick={() => navigate("/admin")}>
+                <button
+                  type="button"
+                  onClick={() => navigateTo("/admin")}
+                >
                   Admin
                 </button>
 
-                <button onClick={() => navigate("/admin-news")}>
+                <button
+                  type="button"
+                  onClick={() => navigateTo("/admin-news")}
+                >
                   News
                 </button>
               </>
             )}
 
-            <button onClick={handleLogout}>
+            <button type="button" onClick={handleLogout}>
               Logout
             </button>
           </>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 
