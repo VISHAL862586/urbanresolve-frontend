@@ -9,7 +9,7 @@ function AdminNews() {
   const [news, setNews] = useState([]);
 
   function loadNews() {
-    fetch("${API_BASE_URL}/api/news")
+    fetch(`${API_BASE_URL}/api/news`)
       .then(res => res.json())
       .then(data => setNews(data));
   }
