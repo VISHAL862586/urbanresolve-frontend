@@ -9,19 +9,46 @@ function Header() {
   const [user, setUser] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
-      credentials: "include"
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Unable to fetch user");
+
+    useEffect(() => {
+      // Show the user saved by Login.jsx immediately.
+      try {
+        const savedUser = localStorage.getItem("user");
+
+        if (savedUser) {
+          setUser(JSON.parse(savedUser));
         }
-        return res.json();
+      } catch (error) {
+        console.error("Unable to read saved user:", error);
+      }
+
+      // Then check the backend session.
+      fetch(`${import.meta.env.VITE_API_URL}/api/auth/me`, {
+        credentials: "include",
       })
-      .then((data) => setUser(data))
-      .catch(() => setUser(null));
-  }, []);
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Unable to verify backend session");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setUser(data);
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              id: data.id,
+              name: data.name,
+              email: data.email,
+              role: data.role,
+            })
+          );
+        })
+        .catch((error) => {
+          console.error("Session verification failed:", error);
+          // Do not erase a saved user just because /me failed.
+        });
+    }, []);
 
   const navigateTo = (path) => {
     setMenuOpen(false);
