@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Profile.css";
+import { API_BASE_URL } from "../api";
 
 function Profile() {
 
@@ -9,7 +10,7 @@ function Profile() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
+    fetch(`${"${API_BASE_URL}"}/api/auth/me`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -29,7 +30,7 @@ function Profile() {
   async function updateProfile() {
 
     const response = await fetch(
-      `${"https://urbanresolve-render-backend.onrender.com"}/api/auth/update-profile`,
+      `${API_BASE_URL}/api/auth/update-profile`,
       {
         method: "PUT",
         headers: {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import "./History.css";
+import { API_BASE_URL } from "../api";
 
 function History() {
 
@@ -9,7 +10,7 @@ function History() {
 
   const [complaints, setComplaints] = useState([]);
   useEffect(() => {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`, {
+    fetch(`${API_BASE_URL}/api/complaints`, {
       credentials: "include"
     })
       .then((res) => {

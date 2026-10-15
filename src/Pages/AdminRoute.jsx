@@ -1,12 +1,14 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./Complaint.css";
+import { API_BASE_URL } from "../api";
 
 function AdminRoute({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/auth/me`, {
+    fetch(`${API_BASE_URL}/api/auth/me`, {
       credentials: "include"
     })
       .then(res => res.json())

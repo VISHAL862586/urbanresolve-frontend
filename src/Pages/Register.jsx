@@ -1,6 +1,7 @@
 import "./Account.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API_BASE_URL } from "../api";
 
 function Register() {
 
@@ -30,7 +31,7 @@ function Register() {
     try {
 
       const res = await fetch(
-        "https://urbanresolve-render-backend.onrender.com/api/auth/register",
+       `${API_BASE_URL}/api/auth/register`,
         {
           method: "POST",
           headers: {

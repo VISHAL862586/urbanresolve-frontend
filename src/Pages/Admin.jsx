@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Admin.css";
+import "./Complaint.css";
+import { API_BASE_URL } from "../api";
 
 function Admin() {
 
@@ -11,7 +13,7 @@ function Admin() {
 
   // Fetch complaints
   function loadComplaints() {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`, {
+    fetch(`${API_BASE_URL}/api/complaints`, {
       credentials: "include"
     })
       .then(res => res.json())
@@ -25,7 +27,7 @@ function Admin() {
 
   //  Update status
   function updateStatus(id, status) {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints/${id}?status=${status}`, {
+    fetch(`${API_BASE_URL}/api/complaints/${id}?status=${status}`, {
       method: "PUT",
       credentials: "include"
     })
@@ -35,7 +37,7 @@ function Admin() {
 
   // ✅ Delete complaint
   function deleteComplaint(id) {
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/complaints/${id}`, {
+    fetch(`${API_BASE_URL}/api/complaints/${id}`, {
       method: "DELETE",
       credentials: "include"
     })
@@ -139,13 +141,13 @@ function Admin() {
             <p><strong>Description:</strong> {c.description}</p>
 
            <img
-              src={`https://urbanresolve-render-backend.onrender.com/api/complaints/image/${c.id}`}
+              src={`${API_BASE_URL}/api/complaints/image/${c.id}`}
               alt="Complaint"
               className="complaint-image"
               onClick={() =>
-                setSelectedImage(
-                  `https://urbanresolve-render-backend.onrender.com/api/complaints/image/${c.id}`
-                )
+             setSelectedImage(
+                `${API_BASE_URL}/api/complaints/image/${c.id}`
+              )
               }
             />
 

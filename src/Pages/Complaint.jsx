@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import "./Complaint.css";
+import { API_BASE_URL } from "../api";
 function Complaint() {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -41,7 +42,7 @@ async function handleSubmit(e) {
     formData.append("image", image);
 
     const res = await fetch(
-      `${"https://urbanresolve-render-backend.onrender.com"}/api/complaints`,
+      `${API_BASE_URL}/api/complaints`,
       {
         method: "POST",
         credentials: "include",

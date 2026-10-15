@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./AdminNews.css";
+import "./Complaint.css";
+import { API_BASE_URL } from "../api";
 
 function AdminNews() {
 
@@ -7,7 +9,7 @@ function AdminNews() {
   const [news, setNews] = useState([]);
 
   function loadNews() {
-    fetch("https://urbanresolve-render-backend.onrender.com/api/news")
+    fetch("${API_BASE_URL}/api/news")
       .then(res => res.json())
       .then(data => setNews(data));
   }
@@ -18,7 +20,7 @@ function AdminNews() {
 
   async function addNews() {
 
-    await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news`, {
+    await fetch(`${API_BASE_URL}/api/news`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -33,7 +35,7 @@ function AdminNews() {
 
   async function deleteNews(id) {
 
-    await fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news/${id}`, {
+    await fetch(`${API_BASE_URL}/api/news/${id}`, {
       method: "DELETE",
       credentials: "include"
     });

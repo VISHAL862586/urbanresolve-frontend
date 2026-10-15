@@ -2,6 +2,7 @@
 import "./Account.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { API_BASE_URL } from "../api";
 
 function Login() {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ function Login() {
       setLoading(true);
 
       const res = await fetch(
-        "https://urbanresolve-render-backend.onrender.com/api/auth/login",
+        `${API_BASE_URL}/api/auth/login`,
         {
           method: "POST",
           headers: {
@@ -75,11 +76,13 @@ function Login() {
       };
 
       localStorage.setItem("user", JSON.stringify(safeUser));
+      console.log("Saved user:", localStorage.getItem("user"));
+      console.log("Navigating to home page...");
 
       setMessage("Login successful!");
       setMessageType("success");
 
-      navigate("/", { replace: true });
+     navigate("/", { replace: true });
     } catch (error) {
       console.error("Login error:", error);
       setMessage("Unable to connect to server. Please try again.");

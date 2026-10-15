@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./NewsTicker.css";
+import { API_BASE_URL } from "../api";
 
 function NewsTicker() {
 
@@ -7,7 +8,7 @@ function NewsTicker() {
 
   useEffect(() => {
 
-    fetch(`${"https://urbanresolve-render-backend.onrender.com"}/api/news`)
+    fetch(API_BASE_URL + "/api/news")
       .then(res => res.json())
       .then(data => {
 
